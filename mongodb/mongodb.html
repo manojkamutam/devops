@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MongoDB Command Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #2c3e50;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #27ae60;
+    }
+    section {
+      background-color: #ffffff;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    pre {
+      background-color: #ecf0f1;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      position: relative;
+    }
+    code {
+      font-family: monospace;
+      color: #2d3436;
+    }
+    button.copy-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+      border: none;
+      background-color: #27ae60;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button.copy-btn:hover {
+      background-color: #1e8449;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍃 MongoDB Command Reference</h1>
+
+  <section>
+    <h2>📂 Database Operations</h2>
+    <button class="copy-btn" onclick="copyToClipboard('db-ops')">Copy</button>
+    <pre><code id="db-ops">// Show all databases
+db.adminCommand('listDatabases')
+
+// Use a database
+use myDatabase
+
+// Show current database
+db
+
+// Drop a database
+db.dropDatabase()</code></pre>
+  </section>
+
+  <section>
+    <h2>📁 Collection Operations</h2>
+    <button class="copy-btn" onclick="copyToClipboard('collection-ops')">Copy</button>
+    <pre><code id="collection-ops">// Show collections
+db.getCollectionNames()
+
+// Create collection
+db.createCollection("myCollection")
+
+// Drop collection
+db.myCollection.drop()</code></pre>
+  </section>
+
+  <section>
+    <h2>📝 CRUD Operations</h2>
+    <button class="copy-btn" onclick="copyToClipboard('crud')">Copy</button>
+    <pre><code id="crud">// Insert document
+db.myCollection.insert({name: "Alice", age: 30})
+
+// Find all documents
+db.myCollection.find()
+
+// Find with filter
+db.myCollection.find({age: {$gt: 25}})
+
+// Update document
+db.myCollection.update({name: "Alice"}, {$set: {age: 31}})
+
+// Delete document
+db.myCollection.remove({name: "Alice"})</code></pre>
+  </section>
+
+  <section>
+    <h2>🔒 User & Role Management</h2>
+    <button class="copy-btn" onclick="copyToClipboard('user-roles')">Copy</button>
+    <pre><code id="user-roles">// Create user
+db.createUser({user: "admin", pwd: "password", roles: ["readWrite"]})
+
+// Show users
+db.getUsers()
+
+// Grant role
+db.grantRolesToUser("admin", ["dbAdmin"])
+
+// Revoke role
+db.revokeRolesFromUser("admin", ["dbAdmin"])</code></pre>
+  </section>
+
+  <section>
+    <h2>📊 Indexes & Performance</h2>
+    <button class="copy-btn" onclick="copyToClipboard('index-perf')">Copy</button>
+    <pre><code id="index-perf">// Create index
+db.myCollection.createIndex({name: 1})
+
+// Show indexes
+db.myCollection.getIndexes()
+
+// Drop index
+db.myCollection.dropIndex("name_1")</code></pre>
+  </section>
+
+  <section>
+    <h2>🛠️ Maintenance & Tools</h2>
+    <button class="copy-btn" onclick="copyToClipboard('maintenance')">Copy</button>
+    <pre><code id="maintenance">// Check server status
+db.serverStatus()
+
+// Current operations
+db.currentOp()
+
+// Kill operation
+db.killOp(opid)</code></pre>
+  </section>
+
+  <script>
+    function copyToClipboard(id) {
+      const codeBlock = document.getElementById(id);
+      const text = codeBlock.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      }, err => {
+        alert("Failed to copy!");
+      });
+    }
+  </script>
+</body>
+</html>

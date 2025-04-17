@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kubernetes Command Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f6f9;
+      color: #2c3e50;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #1d3557;
+    }
+    section {
+      background-color: #fff;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    pre {
+      background-color: #f1f3f5;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      position: relative;
+    }
+    code {
+      font-family: monospace;
+      color: #2d3436;
+    }
+    button.copy-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+      border: none;
+      background-color: #0077b6;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button.copy-btn:hover {
+      background-color: #023e8a;
+    }
+  </style>
+</head>
+<body>
+  <h1>☸️ Kubernetes Command Reference</h1>
+
+  <section>
+    <h2>📝 Cluster Setup & Info</h2>
+    <button class="copy-btn" onclick="copyToClipboard('cluster-setup')">Copy</button>
+    <pre><code id="cluster-setup"># Create a new cluster (using Minikube as an example)
+minikube start
+
+# Show cluster info
+kubectl cluster-info
+
+# Show nodes in the cluster
+kubectl get nodes
+
+# View the status of the cluster
+kubectl get cs</code></pre>
+  </section>
+
+  <section>
+    <h2>📦 Pods</h2>
+    <button class="copy-btn" onclick="copyToClipboard('pods')">Copy</button>
+    <pre><code id="pods"># List all pods in the default namespace
+kubectl get pods
+
+# List all pods in all namespaces
+kubectl get pods --all-namespaces
+
+# Describe a specific pod
+kubectl describe pod pod-name
+
+# Delete a pod
+kubectl delete pod pod-name</code></pre>
+  </section>
+
+  <section>
+    <h2>📑 Deployments</h2>
+    <button class="copy-btn" onclick="copyToClipboard('deployments')">Copy</button>
+    <pre><code id="deployments"># List deployments
+kubectl get deployments
+
+# Create a deployment
+kubectl create deployment deployment-name --image=image-name
+
+# Scale a deployment
+kubectl scale deployment deployment-name --replicas=3
+
+# Update a deployment with a new image
+kubectl set image deployment/deployment-name container-name=image-name
+
+# Rollback to previous deployment
+kubectl rollout undo deployment/deployment-name</code></pre>
+  </section>
+
+  <section>
+    <h2>📁 Services</h2>
+    <button class="copy-btn" onclick="copyToClipboard('services')">Copy</button>
+    <pre><code id="services"># List services
+kubectl get svc
+
+# Expose deployment as a service
+kubectl expose deployment deployment-name --type=LoadBalancer --port=8080
+
+# Get detailed service information
+kubectl describe svc service-name</code></pre>
+  </section>
+
+  <section>
+    <h2>💡 Namespaces</h2>
+    <button class="copy-btn" onclick="copyToClipboard('namespaces')">Copy</button>
+    <pre><code id="namespaces"># List all namespaces
+kubectl get namespaces
+
+# Create a new namespace
+kubectl create namespace namespace-name
+
+# Set the current namespace for kubectl
+kubectl config set-context --current --namespace=namespace-name</code></pre>
+  </section>
+
+  <section>
+    <h2>🔧 ConfigMaps & Secrets</h2>
+    <button class="copy-btn" onclick="copyToClipboard('config-secrets')">Copy</button>
+    <pre><code id="config-secrets"># Create a configmap
+kubectl create configmap configmap-name --from-literal=key=value
+
+# Create a secret
+kubectl create secret generic secret-name --from-literal=key=value
+
+# List configmaps
+kubectl get configmaps
+
+# List secrets
+kubectl get secrets</code></pre>
+  </section>
+
+  <section>
+    <h2>🔄 Logs & Troubleshooting</h2>
+    <button class="copy-btn" onclick="copyToClipboard('logs')">Copy</button>
+    <pre><code id="logs"># Get logs for a pod
+kubectl logs pod-name
+
+# Get logs for a specific container in a pod
+kubectl logs pod-name -c container-name
+
+# Follow logs in real-time
+kubectl logs -f pod-name
+
+# Show cluster events
+kubectl get events</code></pre>
+  </section>
+
+  <section>
+    <h2>⚙️ Resource Management</h2>
+    <button class="copy-btn" onclick="copyToClipboard('resources')">Copy</button>
+    <pre><code id="resources"># Get resources of a pod
+kubectl top pod pod-name
+
+# Get resources of a node
+kubectl top node node-name
+
+# Describe a pod resource
+kubectl describe pod pod-name</code></pre>
+  </section>
+
+  <section>
+    <h2>⚙️ Kubectl Configurations</h2>
+    <button class="copy-btn" onclick="copyToClipboard('configurations')">Copy</button>
+    <pre><code id="configurations"># View current configuration
+kubectl config view
+
+# Set the current context
+kubectl config use-context context-name
+
+# View the context
+kubectl config current-context</code></pre>
+  </section>
+
+  <section>
+    <h2>🔑 RBAC & Access Control</h2>
+    <button class="copy-btn" onclick="copyToClipboard('rbac')">Copy</button>
+    <pre><code id="rbac"># View roles
+kubectl get roles
+
+# Create a role
+kubectl create role role-name --verb=get,list --resource=pods --namespace=namespace-name
+
+# Bind role to user
+kubectl create rolebinding binding-name --role=role-name --user=user-name --namespace=namespace-name</code></pre>
+  </section>
+
+  <script>
+    function copyToClipboard(id) {
+      const codeBlock = document.getElementById(id);
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        alert("Copied to clipboard!");
+      }, () => {
+        alert("Failed to copy.");
+      });
+    }
+  </script>
+</body>
+</html>

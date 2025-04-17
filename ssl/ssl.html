@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SSL Certificates with Certbot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f6fa;
+      color: #2c3e50;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #1e90ff;
+    }
+    section {
+      background-color: #fff;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    pre {
+      background-color: #f0f4f8;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+      color: #2d3436;
+    }
+    button.copy-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button.copy-btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔐 Generate SSL Certificates using Certbot</h1>
+
+  <section>
+    <h2>📦 Install Certbot</h2>
+    <button class="copy-btn" onclick="copyToClipboard('install')">Copy</button>
+    <pre><code id="install"># Ubuntu/Debian
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+
+# RHEL/CentOS
+sudo yum install epel-release
+sudo yum install certbot python3-certbot-nginx</code></pre>
+  </section>
+
+  <section>
+    <h2>📨 Email Registration (First Time Setup)</h2>
+    <button class="copy-btn" onclick="copyToClipboard('email-reg')">Copy</button>
+    <pre><code id="email-reg"># Agree to Terms of Service and register email
+sudo certbot register --email your@email.com --agree-tos --no-eff-email</code></pre>
+  </section>
+
+  <section>
+    <h2>🌐 HTTP Validation (Automatic)</h2>
+    <button class="copy-btn" onclick="copyToClipboard('http-validation')">Copy</button>
+    <pre><code id="http-validation"># Automatically detect and configure Nginx/Apache
+sudo certbot --nginx -d example.com -d www.example.com
+
+# Or for Apache
+sudo certbot --apache -d example.com
+
+# Standalone mode (use if no web server is running)
+sudo certbot certonly --standalone -d example.com --preferred-challenges http</code></pre>
+  </section>
+
+  <section>
+    <h2>🛡️ DNS Challenge Validation</h2>
+    <button class="copy-btn" onclick="copyToClipboard('dns-validation')">Copy</button>
+    <pre><code id="dns-validation"># Manual DNS challenge
+sudo certbot certonly --manual --preferred-challenges dns -d example.com
+
+# You'll be prompted to add a TXT record like:
+# _acme-challenge.example.com → some-value
+
+# After adding it, wait and press ENTER to continue</code></pre>
+  </section>
+
+  <section>
+    <h2>🔁 Renewal & Auto-Renew Setup</h2>
+    <button class="copy-btn" onclick="copyToClipboard('renew')">Copy</button>
+    <pre><code id="renew"># Dry-run test renewal
+sudo certbot renew --dry-run
+
+# Enable automatic renewal (runs twice daily)
+sudo systemctl status certbot.timer
+sudo systemctl enable certbot.timer
+
+# Manual renewal
+sudo certbot renew</code></pre>
+  </section>
+
+  <section>
+    <h2>📁 Location of SSL Files</h2>
+    <button class="copy-btn" onclick="copyToClipboard('files')">Copy</button>
+    <pre><code id="files"># SSL certs and keys are stored at:
+- /etc/letsencrypt/live/example.com/fullchain.pem
+- /etc/letsencrypt/live/example.com/privkey.pem
+
+# You can use these in Nginx or Apache config:
+ssl_certificate     /etc/letsencrypt/live/example.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;</code></pre>
+  </section>
+
+  <section>
+    <h2>⚠️ Common Errors & Fixes</h2>
+    <button class="copy-btn" onclick="copyToClipboard('errors')">Copy</button>
+    <pre><code id="errors"># Port 80 already in use
+→ Make sure no web server is running or use --webroot or --nginx method
+
+# DNS record not found
+→ Ensure the domain is pointing to your server IP
+
+# Challenge failed
+→ Double-check TXT record in DNS, wait for propagation</code></pre>
+  </section>
+
+  <script>
+    function copyToClipboard(id) {
+      const codeBlock = document.getElementById(id);
+      const text = codeBlock.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      }, err => {
+        alert("Failed to copy!");
+      });
+    }
+  </script>
+
+</body>
+</html>

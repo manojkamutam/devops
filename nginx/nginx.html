@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nginx Reference Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #0e76a8;
+    }
+    section {
+      background-color: #fff;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    pre {
+      background-color: #f0f4f8;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+      color: #2d3436;
+    }
+    button.copy-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button.copy-btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌐 Nginx Deployment & Configuration Guide</h1>
+
+  <section>
+    <h2>📦 Installation</h2>
+    <button class="copy-btn" onclick="copyToClipboard('install')">Copy</button>
+    <pre><code id="install"># Ubuntu/Debian
+sudo apt update
+sudo apt install nginx
+
+# CentOS/RHEL
+sudo yum install epel-release
+sudo yum install nginx
+
+# Start Nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl status nginx</code></pre>
+  </section>
+
+  <section>
+    <h2>⚙️ Basic Configuration</h2>
+    <button class="copy-btn" onclick="copyToClipboard('nginx-conf')">Copy</button>
+    <pre><code id="nginx-conf"># /etc/nginx/nginx.conf
+user www-data;
+worker_processes auto;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include mime.types;
+    default_type application/octet-stream;
+    sendfile on;
+    keepalive_timeout 65;
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>🔁 Reverse Proxy Example</h2>
+    <button class="copy-btn" onclick="copyToClipboard('proxy')">Copy</button>
+    <pre><code id="proxy">server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>🏠 Multiple Frontends (Virtual Hosts)</h2>
+    <button class="copy-btn" onclick="copyToClipboard('multi')">Copy</button>
+    <pre><code id="multi"># Site 1
+server {
+    listen 80;
+    server_name site1.com;
+    root /var/www/site1;
+    index index.html;
+}
+
+# Site 2
+server {
+    listen 80;
+    server_name site2.com;
+    root /var/www/site2;
+    index index.html;
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>🔒 Enabling SSL (Self-Signed or Let's Encrypt)</h2>
+    <button class="copy-btn" onclick="copyToClipboard('ssl')">Copy</button>
+    <pre><code id="ssl"># Self-signed
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+-keyout /etc/nginx/ssl/nginx.key \
+-out /etc/nginx/ssl/nginx.crt
+
+# Configure server block
+server {
+    listen 443 ssl;
+    server_name yourdomain.com;
+
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+    location / {
+        root /var/www/html;
+        index index.html;
+    }
+}
+
+# Let's Encrypt
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d yourdomain.com</code></pre>
+  </section>
+
+  <script>
+    function copyToClipboard(id) {
+      const codeBlock = document.getElementById(id);
+      const text = codeBlock.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      }, err => {
+        alert("Failed to copy!");
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux Command Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f2f6fa;
+      color: #2c3e50;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #1e3799;
+    }
+    section {
+      background-color: #ffffff;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    pre {
+      background-color: #ecf0f1;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      position: relative;
+    }
+    code {
+      font-family: monospace;
+      color: #2d3436;
+    }
+    button.copy-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button.copy-btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐧 Linux Command Reference</h1>
+
+  <section>
+    <h2>👤 User Management and permissions</h2>
+    <button class="copy-btn" onclick="copyToClipboard('user-commands')">Copy</button>
+    <pre><code id="user-commands"># Add new user
+sudo useradd -m newuser
+
+# Set password
+sudo passwd newuser
+
+# Add to sudoers
+sudo usermod -aG sudo newuser
+
+# Delete user and home directory
+sudo userdel -r newuser
+
+# List all users
+cut -d: -f1 /etc/passwd
+
+# Who is logged in
+who
+
+# Current user
+whoami
+
+#permissions
+chown -R user_name:group_name file_name/fodler_name
+chmod -R 777 file_name/folder_name</code></pre>
+  </section>
+
+  <section>
+    <h2>📂 File & Directory Management</h2>
+    <button class="copy-btn" onclick="copyToClipboard('file-dir')">Copy</button>
+    <pre><code id="file-dir"># Create directory
+mkdir myfolder
+
+# Create file
+touch file.txt
+
+#List all files
+ls -lahrt
+
+# Remove file and directory
+rm file.txt
+rm -r myfolder
+
+# Delete all but one file/dir
+find . ! -name 'keep.txt' -type f -exec rm {} +
+
+# Disk usage
+df -hT
+
+#to check folder size
+du -sh <folder_name>
+du -sh *
+
+#check list of disks available
+fdisk -l
+lsblk</code></pre>
+  </section>
+
+  <section>
+    <h2>🛠️ Text Processing: sed, awk, grep, find</h2>
+    <button class="copy-btn" onclick="copyToClipboard('text-processing')">Copy</button>
+    <pre><code id="text-processing"># Find files by name
+find /path -name "*.log"
+
+# Grep search in file
+grep 'error' file.txt
+
+# Recursive grep
+grep -r 'searchterm' /path
+
+# sed replace
+sed -i 's/old/new/g' file.txt
+
+# awk print column
+awk '{print $1}' file.txt
+
+# awk filter
+awk '$3 > 50 {print $1, $3}' data.txt</code></pre>
+  </section>
+
+  <section>
+    <h2>📊 Monitoring & Performance</h2>
+    <button class="copy-btn" onclick="copyToClipboard('monitoring')">Copy</button>
+    <pre><code id="monitoring"># System resource monitor
+top
+
+# Memory usage
+free -h
+
+# Disk space
+df -h
+
+# Network info
+netstat -tulnp
+
+# port usage status
+netstat -an | grep <port>
+netstat -tulnp | grep <port>
+
+# Check open ports
+ss -tuln
+
+# Test connectivity
+telnet google.com 80
+
+# High CPU usage
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head
+
+# High memory usage
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
+
+# System logs
+journalctl -xe
+
+# Reboot logs
+journalctl | grep -i reboot</code></pre>
+  </section>
+
+  <section>
+    <h2>🧠 Scheduling Tasks</h2>
+    <button class="copy-btn" onclick="copyToClipboard('cron')">Copy</button>
+    <pre><code id="cron"># Edit crontab
+crontab -e
+
+# View crontab
+crontab -l
+
+# Remove crontab
+crontab -r
+
+# List scheduled tasks
+ls /etc/cron.*
+
+# Cron syntax example
+# ┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday to Saturday)
+# │ │ │ │ │
+# * * * * * command_to_execute</code></pre>
+  </section>
+
+  <section>
+    <h2>🌐 Networking & Downloads</h2>
+    <button class="copy-btn" onclick="copyToClipboard('network')">Copy</button>
+    <pre><code id="network"># Ping test
+ping google.com
+
+# Basic GET request
+curl https://example.com
+
+# Follow redirects
+curl -L https://example.com
+
+# Save output to file
+curl -o filename.html https://example.com
+
+# Save with same name as remote
+curl -O https://example.com/file.tar.gz
+
+# Download multiple files
+curl -O https://example.com/file1 -O https://example.com/file2
+
+# Display only HTTP headers
+curl -I https://example.com
+
+# Include request headers
+curl -H "Authorization: Bearer TOKEN" https://example.com
+
+# Set multiple headers
+curl -H "Accept: application/json" -H "User-Agent: Custom" https://example.com
+
+# Send POST request with data
+curl -X POST -d "name=John&age=30" https://example.com/post
+
+# Send POST request with JSON
+curl -X POST -H "Content-Type: application/json" -d '{"name":"John"}' https://example.com/api
+
+# Send PUT request
+curl -X PUT -d "param=value" https://example.com/put
+
+# Upload a file
+curl -T file.txt https://example.com/upload
+
+# Authenticate with username and password
+curl -u username:password https://example.com
+
+# Use a cookie
+curl --cookie "name=value" https://example.com
+
+# Store cookies
+curl -c cookies.txt https://example.com
+
+# Use stored cookies
+curl -b cookies.txt https://example.com
+
+# Show verbose/debug output
+curl -v https://example.com
+
+# Silent mode (no progress or error)
+curl -s https://example.com
+
+# Use a proxy
+curl -x http://proxyserver:port https://example.com
+
+# Send custom request method
+curl -X DELETE https://example.com/delete
+
+# Limit download speed (e.g. 1MB/s)
+curl --limit-rate 1M https://example.com
+
+# Resume download
+curl -C - -O https://example.com/largefile.zip
+
+# Follow and show redirects info
+curl -IL https://example.com
+
+# Check SSL certificate info
+curl --cert-status https://example.com
+
+# Use specific HTTP method
+curl -X OPTIONS https://example.com
+
+# Bypass SSL certificate checks (⚠️ only when needed)
+curl --insecure https://self-signed.badssl.com
+
+# Check internet IP
+curl ifconfig.me</code></pre>
+  </section>
+
+  <script>
+    function copyToClipboard(id) {
+      const codeBlock = document.getElementById(id);
+      const text = codeBlock.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      }, err => {
+        alert("Failed to copy!");
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Git Command Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f4f8;
+      color: #2c3e50;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #1d3557;
+    }
+    section {
+      background-color: #fff;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    pre {
+      background-color: #f1f3f5;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      position: relative;
+    }
+    code {
+      font-family: monospace;
+      color: #2d3436;
+    }
+    button.copy-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+      border: none;
+      background-color: #0077b6;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button.copy-btn:hover {
+      background-color: #023e8a;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐙 Git Command Reference</h1>
+
+  <section>
+    <h2>🔧 Git Configuration</h2>
+    <button class="copy-btn" onclick="copyToClipboard('config')">Copy</button>
+    <pre><code id="config"># Set user name and email
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+
+# List config
+git config --list</code></pre>
+  </section>
+
+  <section>
+    <h2>📁 Repository Initialization</h2>
+    <button class="copy-btn" onclick="copyToClipboard('init')">Copy</button>
+    <pre><code id="init"># Initialize a repo
+git init
+
+# Clone repo
+git clone https://github.com/user/repo.git
+
+# Clone specific branch
+git clone -b branch-name https://github.com/user/repo.git</code></pre>
+  </section>
+
+  <section>
+    <h2>📄 Basic Workflow</h2>
+    <button class="copy-btn" onclick="copyToClipboard('workflow')">Copy</button>
+    <pre><code id="workflow"># Check status
+git status
+
+# Stage files
+git add file.txt
+git add .
+
+# Commit
+git commit -m "message"
+
+# View logs
+git log
+git log --oneline --graph --all
+
+# View changes
+git diff
+git diff --staged</code></pre>
+  </section>
+
+  <section>
+    <h2>🌿 Branching</h2>
+    <button class="copy-btn" onclick="copyToClipboard('branch')">Copy</button>
+    <pre><code id="branch"># List branches
+git branch
+
+# Create new branch
+git branch new-branch
+
+# Switch branches
+git checkout new-branch
+git switch new-branch
+
+# Create + switch
+git checkout -b feature/login
+
+# Delete branch
+git branch -d old-branch</code></pre>
+  </section>
+
+  <section>
+    <h2>🔁 Merging & Rebasing</h2>
+    <button class="copy-btn" onclick="copyToClipboard('merge')">Copy</button>
+    <pre><code id="merge"># Merge into current branch
+git merge branch-name
+
+# Rebase onto another branch
+git rebase main
+
+# Abort rebase
+git rebase --abort</code></pre>
+  </section>
+
+  <section>
+    <h2>🔄 Remote Repositories</h2>
+    <button class="copy-btn" onclick="copyToClipboard('remote')">Copy</button>
+    <pre><code id="remote"># Add remote
+git remote add origin https://github.com/user/repo.git
+
+# Show remotes
+git remote -v
+
+# Push changes
+git push origin branch-name
+
+# Pull latest changes
+git pull origin main</code></pre>
+  </section>
+
+  <section>
+    <h2>🔐 Stashing & Cleaning</h2>
+    <button class="copy-btn" onclick="copyToClipboard('stash')">Copy</button>
+    <pre><code id="stash"># Stash changes
+git stash
+
+# List stashes
+git stash list
+
+# Apply latest stash
+git stash apply
+
+# Drop latest stash
+git stash drop</code></pre>
+  </section>
+
+  <section>
+    <h2>🏷️ Tags</h2>
+    <button class="copy-btn" onclick="copyToClipboard('tag')">Copy</button>
+    <pre><code id="tag"># Create tag
+git tag v1.0.0
+
+# Annotated tag
+git tag -a v1.0.0 -m "Version 1.0.0"
+
+# Push tags
+git push origin --tags
+
+# List tags
+git tag</code></pre>
+  </section>
+
+  <section>
+    <h2>💣 Undo & Reset</h2>
+    <button class="copy-btn" onclick="copyToClipboard('undo')">Copy</button>
+    <pre><code id="undo"># Unstage file
+git reset file.txt
+
+# Undo commit (keep changes)
+git reset --soft HEAD~1
+
+# Undo commit (discard changes)
+git reset --hard HEAD~1
+
+# Checkout file from last commit
+git checkout -- file.txt</code></pre>
+  </section>
+
+  <script>
+    function copyToClipboard(id) {
+      const codeBlock = document.getElementById(id);
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        alert("Copied to clipboard!");
+      }, () => {
+        alert("Failed to copy.");
+      });
+    }
+  </script>
+</body>
+</html>

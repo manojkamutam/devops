@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tomcat Command Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f6f9;
+      color: #2c3e50;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #1d3557;
+    }
+    section {
+      background-color: #fff;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    pre {
+      background-color: #f1f3f5;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      position: relative;
+    }
+    code {
+      font-family: monospace;
+      color: #2d3436;
+    }
+    button.copy-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+      border: none;
+      background-color: #0077b6;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button.copy-btn:hover {
+      background-color: #023e8a;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌐 Tomcat Command Reference</h1>
+
+  <section>
+    <h2>⚙️ Tomcat Installation</h2>
+    <button class="copy-btn" onclick="copyToClipboard('install')">Copy</button>
+    <pre><code id="install"># Update package index
+sudo apt-get update
+
+# Install Java (required for Tomcat)
+sudo apt-get install openjdk-11-jdk
+
+# Download Tomcat (example for Tomcat 9)
+wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.53/bin/apache-tomcat-9.0.53.tar.gz
+
+# Extract Tomcat archive
+tar -xvzf apache-tomcat-9.0.53.tar.gz
+
+# Move to /opt for global access
+sudo mv apache-tomcat-9.0.53 /opt/tomcat
+
+# Set environment variables
+echo "export CATALINA_HOME=/opt/tomcat" >> ~/.bashrc
+source ~/.bashrc</code></pre>
+  </section>
+
+  <section>
+    <h2>🚀 Starting and Stopping Tomcat</h2>
+    <button class="copy-btn" onclick="copyToClipboard('start-stop')">Copy</button>
+    <pre><code id="start-stop"># Start Tomcat
+cd /opt/tomcat/bin
+./startup.sh
+
+# Stop Tomcat
+cd /opt/tomcat/bin
+./shutdown.sh</code></pre>
+  </section>
+
+  <section>
+    <h2>📄 Configuring Tomcat</h2>
+    <button class="copy-btn" onclick="copyToClipboard('configuring')">Copy</button>
+    <pre><code id="configuring"># Edit Tomcat configuration
+sudo nano /opt/tomcat/conf/server.xml
+
+# Configure HTTP port (default is 8080)
+# Find the Connector port tag and change the port
+# Example:
+# <Connector port="8080" protocol="HTTP/1.1" 
+#            connectionTimeout="20000"
+#            redirectPort="8443" />
+
+# Change memory allocation
+sudo nano /opt/tomcat/bin/setenv.sh
+# Add the following line to set heap size:
+# export CATALINA_OPTS="-Xms512m -Xmx1024m"</code></pre>
+  </section>
+
+  <section>
+    <h2>🔧 Change Tomcat Port Number</h2>
+    <button class="copy-btn" onclick="copyToClipboard('change-port')">Copy</button>
+    <pre><code id="change-port"># To change the Tomcat port, edit the server.xml file
+sudo nano /opt/tomcat/conf/server.xml
+
+# Find the Connector section and modify the port number
+# Example: change port="8080" to port="9090"
+# <Connector port="8080" protocol="HTTP/1.1" 
+#            connectionTimeout="20000"
+#            redirectPort="8443" />
+# Save the file and restart Tomcat to apply changes
+./shutdown.sh
+./startup.sh</code></pre>
+  </section>
+
+<section>
+  <h2>🔒 Enabling SSL in Tomcat</h2>
+  <button class="copy-btn" onclick="copyToClipboard('enable-ssl')">Copy</button>
+  <pre><code id="enable-ssl"># 1️⃣ Self-Signed SSL Certificate using keytool
+
+# Generate a self-signed certificate and store in a keystore
+keytool -genkey -alias tomcat \
+  -keyalg RSA \
+  -keystore /opt/tomcat/ssl/keystore.jks \
+  -storepass changeit \
+  -validity 365
+
+# Recommended directory to store SSL files
+mkdir -p /opt/tomcat/ssl
+mv keystore.jks /opt/tomcat/ssl/
+
+# Edit server.xml to use the keystore
+sudo nano /opt/tomcat/conf/server.xml
+
+# Add or uncomment the following connector
+<Connector port="8443" protocol="HTTP/1.1"
+           SSLEnabled="true"
+           maxThreads="150"
+           scheme="https" secure="true"
+           clientAuth="false" sslProtocol="TLS"
+           keystoreFile="/opt/tomcat/ssl/keystore.jks"
+           keystorePass="changeit" />
+
+# Restart Tomcat
+/opt/tomcat/bin/shutdown.sh
+/opt/tomcat/bin/startup.sh
+
+# Access site at: https://your-ip:8443
+
+
+# 2️⃣ SSL Configuration using Domain Certificates (CA Issued)
+
+# Files typically provided by CA:
+# - Certificate (yourdomain.crt)
+# - Intermediate Chain (ca_bundle.crt)
+# - Private Key (yourdomain.key)
+
+# Recommended storage
+mkdir -p /opt/tomcat/ssl
+cp yourdomain.crt ca_bundle.crt yourdomain.key /opt/tomcat/ssl/
+
+# Convert to a PKCS12 format for use in Tomcat
+openssl pkcs12 -export \
+  -in yourdomain.crt \
+  -inkey yourdomain.key \
+  -certfile ca_bundle.crt \
+  -out /opt/tomcat/ssl/yourdomain.p12 \
+  -name tomcat \
+  -passout pass:changeit
+
+# Import the PKCS12 into a Java keystore
+keytool -importkeystore \
+  -deststorepass changeit \
+  -destkeypass changeit \
+  -destkeystore /opt/tomcat/ssl/keystore.jks \
+  -srckeystore /opt/tomcat/ssl/yourdomain.p12 \
+  -srcstoretype PKCS12 \
+  -srcstorepass changeit \
+  -alias tomcat
+
+# Edit server.xml to point to the new keystore
+sudo nano /opt/tomcat/conf/server.xml
+
+<Connector port="443" protocol="HTTP/1.1"
+           SSLEnabled="true"
+           maxThreads="150"
+           scheme="https" secure="true"
+           clientAuth="false" sslProtocol="TLS"
+           keystoreFile="/opt/tomcat/ssl/keystore.jks"
+           keystorePass="changeit" />
+
+# Restart Tomcat
+/opt/tomcat/bin/shutdown.sh
+/opt/tomcat/bin/startup.sh
+
+# Now your domain will be accessible via: https://yourdomain.com
+</code></pre>
+</section>
+
+  <section>
+    <h2>📦 Tomcat Deployment</h2>
+    <button class="copy-btn" onclick="copyToClipboard('deployment')">Copy</button>
+    <pre><code id="deployment"># Deploy a WAR file (example)
+cp /path/to/your/app.war /opt/tomcat/webapps/
+
+# List deployed applications
+ls /opt/tomcat/webapps/
+
+# Tomcat auto-deploys WAR files after placing them in the webapps directory.
+
+# Deploying manually by copying the WAR file into the 'webapps' folder
+# The application will be unpacked automatically upon Tomcat startup.
+
+# Restart Tomcat after deploying
+./shutdown.sh
+./startup.sh</code></pre>
+  </section>
+
+  <section>
+    <h2>🔑 Tomcat User and Role Configuration</h2>
+    <button class="copy-btn" onclick="copyToClipboard('user-role')">Copy</button>
+    <pre><code id="user-role"># Edit the Tomcat users
+sudo nano /opt/tomcat/conf/tomcat-users.xml
+
+# Example of adding a manager user
+<role rolename="manager-gui"/>
+<user username="admin" password="password" roles="manager-gui"/>
+
+# Set correct permissions
+sudo chown -R tomcat:tomcat /opt/tomcat/</code></pre>
+  </section>
+
+  <section>
+    <h2>🔍 Tomcat Logs</h2>
+    <button class="copy-btn" onclick="copyToClipboard('logs')">Copy</button>
+    <pre><code id="logs"># View the Tomcat logs
+tail -f /opt/tomcat/logs/catalina.out
+
+# Check all Tomcat logs
+ls /opt/tomcat/logs/
+
+# Tomcat logs include catalina.out, localhost.<date>.log, and manager.<date>.log</code></pre>
+  </section>
+
+  <section>
+    <h2>🔧 Troubleshooting Tomcat</h2>
+    <button class="copy-btn" onclick="copyToClipboard('troubleshooting')">Copy</button>
+    <pre><code id="troubleshooting"># Check for processes running Tomcat
+ps aux | grep tomcat
+
+# Check available memory for Tomcat
+free -h
+
+# Check the system status of Tomcat (check if port 8080 is being used)
+netstat -tuln | grep 8080</code></pre>
+  </section>
+
+  <section>
+    <h2>🛠️ Tomcat Setenv.sh Configuration</h2>
+    <button class="copy-btn" onclick="copyToClipboard('setenv')">Copy</button>
+    <pre><code id="setenv"># Create the setenv.sh file in Tomcat's bin directory to set environment variables
+sudo nano /opt/tomcat/bin/setenv.sh
+
+# Example of adding environment variables:
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+export CATALINA_OPTS="-Xms512m -Xmx1024m"
+
+# Save and close the file. Restart Tomcat for changes to take effect
+./shutdown.sh
+./startup.sh</code></pre>
+  </section>
+
+  <section>
+    <h2>📦 Tomcat on System Startup</h2>
+    <button class="copy-btn" onclick="copyToClipboard('startup')">Copy</button>
+    <pre><code id="startup"># Create a systemd service file for Tomcat
+sudo nano /etc/systemd/system/tomcat.service
+
+# Add the following configuration
+[Unit]
+Description=Tomcat 9 servlet container
+After=network.target
+
+[Service]
+User=tomcat
+Group=tomcat
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+# Enable and start Tomcat as a systemd service
+sudo systemctl enable tomcat
+sudo systemctl start tomcat
+
+# Check status of Tomcat
+sudo systemctl status tomcat</code></pre>
+  </section>
+
+  <script>
+    function copyToClipboard(id) {
+      const codeBlock = document.getElementById(id);
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        alert("Copied to clipboard!");
+      }, () => {
+        alert("Failed to copy.");
+      });
+    }
+  </script>
+</body>
+</html>

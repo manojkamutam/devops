@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn DevOps with Manoj</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #f0f4f8;
+      --primary: #4f46e5;
+      --accent: #06b6d4;
+      --card-bg: #ffffff;
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    nav a {
+      margin: 0 0.75rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #e0f2fe;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--primary);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+      font-size: 0.95rem;
+    }
+
+    a.button:hover {
+      background: #4338ca;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>DevOps Documentation by Manoj</h1>
+    <nav>
+      <a href="#docker">Docker</a>
+      <a href="#kubernetes">Kubernetes</a>
+      <a href="#terraform">Terraform</a>
+      <a href="#linux">Linux</a>
+      <a href="#git">Git</a>
+      <a href="#jenkins">Jenkins</a>
+      <a href="#python">Python</a>
+      <a href="#bash">Bash</a>
+      <a href="#grafana">Grafana</a>
+      <a href="#mysql">MySQL</a>
+      <a href="#postgresql">PostgreSQL</a>
+      <a href="#mongodb">MongoDB</a>
+      <a href="#nginx_new">Nginx</a>
+      <a href="#tomcat">Tomcat</a>
+      <a href="#ssl">ssl Certificates</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="docker">
+      <h2>🐳 Docker</h2>
+      <p>Containerize applications and manage images, containers, networks, and volumes with Docker.</p>
+      <a href="docker/docker.html" class="button" target="_blank">Read Docker Docs →</a>
+    </section>
+
+    <section id="kubernetes">
+      <h2>☸️ Kubernetes</h2>
+      <p>Deploy and manage containerized applications at scale with Kubernetes clusters.</p>
+      <a href="kubernetes/kubernetes.html" class="button" target="_blank">Read Kubernetes Docs →</a>
+    </section>
+
+    <section id="terraform">
+      <h2>🌍 Terraform</h2>
+      <p>Define and provision infrastructure using Infrastructure as Code across cloud providers.</p>
+      <a href="Terraform/terraform.html" class="button" target="_blank">Read Terraform Docs →</a>
+    </section>
+
+    <section id="git">
+      <h2>🌿 Git</h2>
+      <p>Version control for source code using branches, merges, remotes, and Git workflows.</p>
+      <a href="git/index.html" class="button" target="_blank">Read Git Docs →</a>
+    </section>
+
+    <section id="tomcat">
+      <h2>🐱 Tomcat</h2>
+      <p>Deploy and manage Java-based web applications using Apache Tomcat.</p>
+      <a href="tomcat/tomcat.html" class="button" target="_blank">Read Tomcat Docs →</a>
+    </section>
+
+
+    <section id="nginx_new">
+        <h2><img src="nginx/nginx.png" alt="Nginx Icon" style="width: 35px; vertical-align: middle;"> Nginx</h2>
+        <p>Serve static files, reverse proxy, and load balance applications with Nginx.</p>
+        <a href="nginx/nginx.html" class="button" target="_blank">Read Nginx Docs →</a>
+      </section>
+      
+
+    <section id="nginx">
+      <h2>🌐 Nginx</h2>
+      <p>Serve static files, reverse proxy, and load balance applications with Nginx.</p>
+      <a href="nginx/nginx.html" class="button" target="_blank">Read Nginx Docs →</a>
+    </section>
+
+    <section id="jenkins">
+      <h2>🧪 Jenkins</h2>
+      <p>Automate CI/CD pipelines using Jenkins and integrate with version control tools.</p>
+      <a href="jenkins/jenkins.html" class="button" target="_blank">Read Jenkins Docs →</a>
+    </section>
+
+    <section id="mysql">
+      <h2>🛢️ MySQL</h2>
+      <p>Set up and manage relational databases, users, and queries using MySQL.</p>
+      <a href="mysql/mysql.html" class="button" target="_blank">Read MySQL Docs →</a>
+    </section>
+
+    <section id="postgresql">
+      <h2>🐘 PostgreSQL</h2>
+      <p>Use PostgreSQL for advanced SQL queries, schemas, and enterprise-grade databases.</p>
+      <a href="postgresql/postgresql.html" class="button" target="_blank">Read PostgreSQL Docs →</a>
+    </section>
+
+    <section id="mongodb">
+      <h2>🍃 MongoDB</h2>
+      <p>Handle unstructured JSON-like data with MongoDB NoSQL database.</p>
+      <a href="mongodb/mongodb.html" class="button" target="_blank">Read MongoDB Docs →</a>
+    </section>
+
+    <section id="linux">
+      <h2>🐧 Linux</h2>
+      <p>Master common Linux commands, shell scripting, permissions, services, and cron.</p>
+      <a href="linux/linux.html" class="button" target="_blank">Read Linux Docs →</a>
+    </section>
+
+    <section id="python">
+      <h2>🐍 Python</h2>
+      <p>Use Python for scripting, automation, and API integrations in DevOps pipelines.</p>
+      <a href="python/python.html" class="button" target="_blank">Read Python Docs →</a>
+    </section>
+
+    <section id="bash">
+      <h2>💻 Bash</h2>
+      <p>Automate tasks and write shell scripts using Bash for Unix-based systems.</p>
+      <a href="bash/bash.html" class="button" target="_blank">Read Bash Docs →</a>
+    </section>
+
+    <section id="grafana">
+      <h2>📊 Grafana</h2>
+      <p>Visualize metrics, logs, and alerts from multiple data sources using Grafana dashboards.</p>
+      <a href="grafana/grafana.html" class="button" target="_blank">Read Grafana Docs →</a>
+    </section>
+    <section id="ssl">
+        <h2>🔒 SSL Certificates</h2>
+        <p>Deploy and manage SSL certificates using Certbot, including DNS and HTTP validation.</p>
+        <a href="ssl/ssl.html" class="button" target="_blank">Read SSL Docs →</a>
+      </section>      
+  </main>
+
+  <footer>
+    © 2025 Learn DevOps with Manoj | Built with 💙 on GitHub Pages
+  </footer>
+
+</body>
+</html>
