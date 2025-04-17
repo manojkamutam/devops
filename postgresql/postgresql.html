@@ -2,186 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terraform Command Reference</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Learn DevOps with Manoj</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
+      margin: 0;
+      padding: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #f4f9f9;
-      color: #2c3e50;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
       padding: 2rem;
-    }
-    h1, h2 {
-      color: #2f4858;
-    }
-    section {
-      background-color: #ffffff;
-      margin-bottom: 2rem;
-      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease-in;
     }
-    pre {
-      background-color: #f0f4f8;
-      padding: 1rem;
-      border-radius: 6px;
-      overflow-x: auto;
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
-    code {
-      font-family: monospace;
+    p {
+      font-size: 1.2rem;
+      color: #dcdcdc;
     }
-    button.copy-btn {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      padding: 0.3rem 0.6rem;
-      font-size: 0.8rem;
-      border: none;
-      background-color: #10a37f;
-      color: white;
-      border-radius: 4px;
-      cursor: pointer;
+    .loader {
+      margin-top: 2rem;
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: auto;
+      margin-right: auto;
     }
-    button.copy-btn:hover {
-      background-color: #0e8a6d;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <h1>🌍 Terraform Command Reference</h1>
-
-  <section>
-    <h2>🔧 Initialization</h2>
-    <button class="copy-btn" onclick="copyToClipboard('init')">Copy</button>
-    <pre><code id="init"># Initialize a Terraform project
-terraform init
-
-# Reconfigure modules and backend
-terraform init -reconfigure
-
-# Upgrade provider versions
-terraform init -upgrade</code></pre>
-  </section>
-
-  <section>
-    <h2>🛠️ Formatting & Validation</h2>
-    <button class="copy-btn" onclick="copyToClipboard('format-validate')">Copy</button>
-    <pre><code id="format-validate"># Format Terraform code
-terraform fmt
-
-# Format all files recursively
-terraform fmt -recursive
-
-# Validate configuration
-terraform validate</code></pre>
-  </section>
-
-  <section>
-    <h2>📄 Plan & Apply</h2>
-    <button class="copy-btn" onclick="copyToClipboard('plan-apply')">Copy</button>
-    <pre><code id="plan-apply"># Show execution plan
-terraform plan
-
-# Save plan to a file
-terraform plan -out=tfplan
-
-# Apply changes
-terraform apply
-
-# Apply from saved plan
-terraform apply tfplan</code></pre>
-  </section>
-
-  <section>
-    <h2>❌ Destroy Resources</h2>
-    <button class="copy-btn" onclick="copyToClipboard('destroy')">Copy</button>
-    <pre><code id="destroy"># Destroy all resources
-terraform destroy
-
-# Destroy specific target
-terraform destroy -target=aws_instance.example</code></pre>
-  </section>
-
-  <section>
-    <h2>📌 Targeting Specific Resources</h2>
-    <button class="copy-btn" onclick="copyToClipboard('target')">Copy</button>
-    <pre><code id="target"># Plan with a specific target
-terraform plan -target=aws_s3_bucket.my_bucket
-
-# Apply only to the target
-terraform apply -target=aws_s3_bucket.my_bucket</code></pre>
-  </section>
-
-  <section>
-    <h2>📦 State Management</h2>
-    <button class="copy-btn" onclick="copyToClipboard('state')">Copy</button>
-    <pre><code id="state"># Show current state
-terraform state list
-
-# Show details of a resource
-terraform state show aws_instance.example
-
-# Remove from state
-terraform state rm aws_instance.example
-
-# Move state
-terraform state mv old_name new_name</code></pre>
-  </section>
-
-  <section>
-    <h2>📂 Workspaces</h2>
-    <button class="copy-btn" onclick="copyToClipboard('workspace')">Copy</button>
-    <pre><code id="workspace"># List workspaces
-terraform workspace list
-
-# Create new workspace
-terraform workspace new dev
-
-# Select workspace
-terraform workspace select dev
-
-# Delete a workspace
-terraform workspace delete dev</code></pre>
-  </section>
-
-  <section>
-    <h2>🔍 Debugging & Inspection</h2>
-    <button class="copy-btn" onclick="copyToClipboard('debug')">Copy</button>
-    <pre><code id="debug"># Output debug logs
-TF_LOG=DEBUG terraform apply
-
-# Show Terraform version
-terraform version
-
-# Show providers
-terraform providers</code></pre>
-  </section>
-
-  <section>
-    <h2>🔄 Refresh & Outputs</h2>
-    <button class="copy-btn" onclick="copyToClipboard('outputs')">Copy</button>
-    <pre><code id="outputs"># Refresh the state
-terraform refresh
-
-# Show outputs
-terraform output
-
-# Show specific output
-terraform output instance_ip</code></pre>
-  </section>
-
-  <script>
-    function copyToClipboard(id) {
-      const codeBlock = document.getElementById(id);
-      const text = codeBlock.innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Copied to clipboard!");
-      }, err => {
-        alert("Failed to copy!");
-      });
-    }
-  </script>
+  <div class="container">
+    <h1>🚀 Learn DevOps with Manoj</h1>
+    <p>This site is under construction. Great things are on the way!</p>
+    <div class="loader"></div>
+    <p style="margin-top: 1.5rem;">Please check back soon.</p>
+  </div>
 </body>
 </html>
