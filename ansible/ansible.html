@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansible for DevOps Learning Path</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            background-color: #f8f9fa; /* Light gray background */
+            color: #333;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        header {
+            background-color: #673ab7; /* Deep purple */
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+
+        /* Navigation (Optional) */
+        nav {
+            background-color: #e0f2f7; /* Light cyan */
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #00acc1; /* Cyan accent */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #b2ebf2; /* Lighter cyan hover */
+        }
+
+        /* Section Styles */
+        .learning-path > li {
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0; /* Light gray border */
+        }
+
+        .learning-path > li > h2 {
+            color: #f44336; /* Red accent for main topics */
+            border-bottom: 3px solid #ef9a9a; /* Light red border */
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .topic-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .topic-list > li {
+            margin-bottom: 25px;
+        }
+
+        .topic-list > li > h3 {
+            color: #4caf50; /* Green accent for sub-topics */
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .sub-topic-list {
+            list-style-type: circle;
+            margin-left: 30px;
+            font-size: 0.95em;
+            color: #757575; /* Medium gray */
+            padding-left: 0;
+        }
+
+        .sub-topic-list > li {
+            margin-bottom: 8px;
+        }
+
+        /* Code Block Styling */
+        .example-code {
+            background-color: #f1f8e9; /* Light green background for code */
+            padding: 15px;
+            border: 1px solid #c8e6c9; /* Light green border */
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .example-code pre {
+            margin: 0;
+        }
+
+        /* Ansible Command Section */
+        .ansible-commands {
+            margin-top: 40px;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        .ansible-commands h2 {
+            color: #ff9800; /* Orange accent for commands */
+            border-bottom: 3px solid #ffe0b2; /* Light orange border */
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .command-item {
+            margin-bottom: 15px;
+        }
+
+        .command {
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            color: #00897b; /* Teal for command name */
+        }
+
+        .command-description {
+            color: #546e7a; /* Blue-gray for description */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #757575;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ansible for DevOps Learning Path</h1>
+            <p>Your guide to mastering Ansible for configuration management and automation in DevOps.</p>
+        </header>
+
+        <nav>
+            <a href="#fundamentals">Fundamentals</a> |
+            <a href="#core-concepts">Core Concepts</a> |
+            <a href="#devops-tasks">DevOps Tasks</a> |
+            <a href="#advanced-topics">Advanced Topics</a> |
+            <a href="#ansible-commands">Common Commands</a>
+        </nav>
+
+        <ul class="learning-path">
+            <li id="fundamentals">
+                <h2>I. Ansible Fundamentals</h2>
+                <ul class="topic-list">
+                    <li>
+                        <h3>1. Introduction to Ansible</h3>
+                        <p>Overview, benefits, architecture (Control Node, Managed Nodes), agentless nature. Example:</p>
+                        <div class="example-code">
+                            <pre><code># Example of a simple Ansible inventory file (hosts)
+[webservers]
+web01.example.com
+web02.example.com
+
+[databases]
+db01.example.com</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>2. Installation and Setup</h3>
+                        <p>Installing Ansible on the control node, configuring SSH for managed nodes. Example (conceptual):</p>
+                        <div class="example-code">
+                            <pre><code># Example of installing Ansible on Debian/Ubuntu
+# sudo apt update
+# sudo apt install software-properties-common
+# sudo add-apt-repository --yes --update ppa:ansible/ansible-core
+# sudo apt install --yes ansible</code></pre>
+                            <p><small>Note: These are shell commands executed on the control node.</small></p>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>3. Inventory Management</h3>
+                        <p>Static and dynamic inventory, host and group variables. Example:</p>
+                        <div class="example-code">
+                            <pre><code># Example of inventory with group variables (group_vars/webservers.yml)
+---
+http_port: 80
+package_name: apache2</code></pre>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li id="core-concepts">
+                <h2>II. Core Ansible Concepts</h2>
+                <ul class="topic-list">
+                    <li>
+                        <h3>4. Modules</h3>
+                        <p>Understanding Ansible modules (core and community), using modules in playbooks. Example:</p>
+                        <div class="example-code">
+                            <pre><code># Example of a simple playbook (playbook.yml)
+---
+- name: Install and start Apache
+  hosts: webservers
+  become: true  # Run tasks with elevated privileges
+
+  tasks:
+    - name: Install Apache package
+      ansible.builtin.apt:
+        name: "{{ package_name }}"
+        state: present
+        update_cache: true
+      vars:
+        package_name: apache2
+
+    - name: Start Apache service
+      ansible.builtin.service:
+        name: "{{ package_name }}"
+        state: started
+        enabled: true</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>5. Tasks</h3>
+                        <p>Individual actions that Ansible executes on managed nodes. Example (within a playbook):</p>
+                        <div class="example-code">
+                            <pre><code>- name: Create a directory
+  ansible.builtin.file:
+    path: /tmp/my_directory
+    state: directory
+    owner: myuser
+    group: mygroup
+    mode: '0755'</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>6. Playbooks</h3>
+                        <p>Orchestrating tasks, plays, and roles. Example (as shown in the Modules section).</p>
+                    </li>
+                    <li>
+                        <h3>7. Variables</h3>
+                        <p>Defining and using variables (host vars, group vars, playbook vars, facts). Example:</p>
+                        <div class="example-code">
+                            <pre><code># Example of host-specific variable (host_vars/web01.example.com.yml)
+---
+server_ip: 192.168.1.10</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>8. Handlers</h3>
+                        <p>Special tasks that are triggered by other tasks only when they report a change. Example:</p>
+                        <div class="example-code">
+                            <pre><code>- name: Configure Apache
+  ansible.builtin.template:
+    src: templates/httpd.conf.j2
+    dest: /etc/apache2/apache2.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache
+
+handlers:
+  - name: Restart Apache
+    ansible.builtin.service:
+      name: apache2
+      state: restarted</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>9. Roles</h3>
+                        <p>Organizing and reusing Ansible content. Example (conceptual structure):</p>
+                        <div class="example-code">
+                            <pre><code># Example of a role directory structure:
+# roles/
+#   webserver/
+#     tasks/main.yml
+#     handlers/main.yml
+#     templates/
+#     vars/main.yml
+#     defaults/main.yml</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>10. Facts</h3>
+                        <p>Gathering information about managed nodes. Example (accessing facts in a playbook):</p>
+                        <div class="example-code">
+                            <pre><code>- name: Display system information
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: Show operating system
+      ansible.builtin.debug:
+        msg: "Operating System: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Show total memory
+      ansible.builtin.debug:
+        msg: "Total Memory: {{ ansible_memtotal_mb }} MB"</code></pre>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li id="devops-tasks">
+                <h2>III. Ansible for DevOps Tasks</h2>
+                <ul class="topic-list">
+                    <li>
+                        <h3>11. Configuration Management</h3>
+                        <p>Ensuring systems are in a desired state. Examples (as shown in previous sections).</p>
+                    </li>
+                    <li>
+                        <h3>12. Application Deployment</h3>
+                        <p>Deploying and managing applications. Example (simple web app deployment):</p>
+                        <div class="example-code">
+                            <pre><code>- name: Deploy web application
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Create web directory
+      ansible.builtin.file:
+        path: /var/www/myapp
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+
+    - name: Copy application files
+      ansible.builtin.copy:
+        src: /path/to/your/app
+        dest: /var/www/myapp
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Restart web service
+      ansible.builtin.service:
+        name: apache2
+        state: restarted</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>13. Orchestration and Workflows</h3>
+                    <p>Automating complex multi-step processes. Example (conceptual):</p>
+                    <div class="example-code">
+                        <pre><code># Example of a playbook with multiple plays
+---
+- name: Prepare database servers
+  hosts: databases
+  become: true
+  roles:
+    - database_setup
+
+- name: Deploy application to web servers
+  hosts: webservers
+  become: true
+  roles:
+    - web_app_deploy</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>14. Cloud Provisioning with Ansible</h3>
+                    <p>Interacting with cloud providers (AWS, Azure, GCP) using Ansible modules. Example (AWS EC2):</p>
+                    <div class="example-code">
+                        <pre><code>- name: Launch an EC2 instance
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Launch EC2 instance
+      amazon.aws.ec2:
+        key_name: my_keypair
+        instance_type: t2.micro
+        image: ami-xxxxxxxxxxxxxxxxx
+        region: us-east-1
+        security_group: my_security_group
+        count: 1
+        wait: yes
+      register: ec2_instance
+
+    - name: Add new instance to hostvars
+      ansible.builtin.add_host:
+        hostname: "{{ item.public_ip }}"
+        groups: launched_ec2
+        ansible_user: ubuntu
+        ansible_private_key_file: ~/.ssh/my_private_key
+      loop: "{{ ec2_instance.instances }}"
+
+    - name: Wait for SSH
+      ansible.builtin.wait_for:
+        host: "{{ item.public_ip }}"
+        port: 22
+        state: started
+      loop: "{{ ec2_instance.instances }}"</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>15. Infrastructure as Code (IaC) with Ansible</h3>
+                    <p>Managing infrastructure declaratively. Examples throughout this section.</p>
+                </li>
+                <li>
+                    <h3>16. Testing Ansible Playbooks</h3>
+                    <p>Using tools like Ansible Lint and Testinfra. Example (conceptual):</p>
+                    <div class="example-code">
+                        <pre><code># Example of an Ansible Lint command
+# ansible-lint playbook.yml
+
+# Example of a Testinfra test (Python)
+# def test_nginx_is_installed(host):
+#     nginx = host.package("nginx")
+#     assert nginx.is_installed
+#     assert nginx.is_running
+#     assert nginx.has_process.with_user("root")
+print("# Conceptual examples of Ansible testing tools")</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>17. CI/CD Integration with Ansible</h3>
+                    <p>Integrating Ansible playbooks into CI/CD pipelines. Example (conceptual):</p>
+                    <div class="example-code">
+                        <pre><code># Example of a CI/CD pipeline step running an Ansible playbook
+# - name: Run Ansible Playbook
+#   command: ansible-playbook -i inventory playbook.yml</code></pre>
+                    </div>
+                </li>
+            </ul>
+            </li>
+
+            <li id="advanced-topics">
+                <h2>IV. Advanced Ansible Topics</h2>
+                <ul class="topic-list">
+                    <li>
+                        <h3>18. Advanced Playbook Techniques</h3>
+                        <p>Loops, conditionals, error handling, block/rescue/always.</p>
+                        <div class="example-code">
+                            <pre><code>- name: Manage multiple users
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Add users
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        state:

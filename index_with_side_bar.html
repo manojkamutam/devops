@@ -5,182 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mastering DevOps with Manoj</title>
   <link rel="icon" type="image/png" href="images/favicon-devops.png">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Styling CSS -->
-  <style>
-    :root {
-      --bg-light: #f0f4f8;
-      --primary: #4f46e5;
-      --accent: #06b6d4;
-      --card-bg: #ffffff;
-      --shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    }
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h3>DevOps Topics</h3>
+    <a href="#docker">Docker</a>
+    <a href="#kubernetes">Kubernetes</a>
+    <a href="#terraform">Terraform</a>
+    <a href="#linux">Linux</a>
+    <a href="#git">Git</a>
+    <a href="#jenkins">Jenkins</a>
+    <a href="#python">Python</a>
+    <a href="#bash">Bash</a>
+    <a href="#grafana">Grafana</a>
+    <a href="#mysql">MySQL</a>
+    <a href="#postgresql">PostgreSQL</a>
+    <a href="#mongodb">MongoDB</a>
+    <a href="#nginx">Nginx</a>
+    <a href="#tomcat">Tomcat</a>
+    <a href="#ssl">SSL</a>
+  </nav>
 
-    * {
-      box-sizing: border-box;
-    }
+  <!-- Content Area -->
+  <div class="content">
+    <header>
+      <div class="profile-container">
+        <img src="images/profile.PNG" alt="Profile Photo" />
+      </div>
+      <h1>Mastering DevOps with Manoj</h1>
+    </header>
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-light);
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
+    <main>
+      <section id="docker">
+        <h2><img src="docker/images/favicon-docker.webp" alt="Docker Logo" style="height: 2em; vertical-align: middle;"> Docker</h2>
+        <p>Containerize applications and manage images, containers, networks, and volumes with Docker.</p>
+        <a href="docker/docker.html" class="button" target="_blank">Read Docker Docs →</a>
+      </section>
 
-    header {
-      background: url('images/devops-bg.webp') center center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 4rem 1rem 3rem;
-      position: relative;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    nav {
-      margin-top: 1rem;
-    }
-
-    nav a {
-      margin: 0 0.75rem;
-      text-decoration: none;
-      font-weight: 600;
-      color: #e0f2fe;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffffff;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    section {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
-    }
-
-    section:hover {
-      transform: translateY(-5px);
-    }
-
-    h2 {
-      color: var(--primary);
-      margin-top: 0;
-      font-size: 1.4rem;
-    }
-
-    p {
-      line-height: 1.5;
-    }
-
-    a.button {
-      display: inline-block;
-      margin-top: 1rem;
-      background: var(--primary);
-      color: white;
-      padding: 0.4rem 0.8rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
-      font-size: 0.95rem;
-    }
-
-    a.button:hover {
-      background: #4338ca;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
-    .profile-container {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      border-radius: 50%;
-      overflow: hidden;
-      width: 60px;
-      height: 60px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .profile-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-  </style>
-  <!-- end of styling -->
-  
-  <header>
-    <div class="profile-container">
-      <img src="images/profile.PNG" alt="Profile Photo" />
-    </div>    
-    <h1>Mastering DevOps with Manoj</h1>
-    <nav>
-      <a href="#docker">Docker</a>
-      <a href="#kubernetes">Kubernetes</a>
-      <a href="#terraform">Terraform</a>
-      <a href="#linux">Linux</a>
-      <a href="#git">Git</a>
-      <a href="#jenkins">Jenkins</a>
-      <a href="#python">Python</a>
-      <a href="#bash">Bash</a>
-      <a href="#grafana">Grafana</a>
-      <a href="#mysql">MySQL</a>
-      <a href="#ansible">Ansible</a>
-      <a href="#postgresql">PostgreSQL</a>
-      <a href="#mongodb">MongoDB</a>
-      <a href="#nginx">Nginx</a>
-      <a href="#tomcat">Tomcat</a>
-      <a href="#ssl">ssl</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="docker">
-      <h2><img src="docker/images/favicon-docker.webp" alt="Docker Logo" style="height: 2em; vertical-align: middle;"> Docker</h2>
-      <p>Containerize applications and manage images, containers, networks, and volumes with Docker.</p>
-      <a href="docker/docker.html" class="button" target="_blank">Read Docker Docs →</a>
-      
-    </section>
-
-    <section id="kubernetes">
-      <h2><img src="kubernetes/images/favicon-kubernetes.png" alt="Docker Logo" style="height: 1.5em; vertical-align: middle;"> Kubernetes</h2>
-      <p>Deploy and manage containerized applications at scale with Kubernetes clusters.</p>
-      <a href="kubernetes/kubernetes.html" class="button" target="_blank">Read Kubernetes Docs →</a>
-    </section>
+      <section id="kubernetes">
+        <h2><img src="kubernetes/images/favicon-kubernetes.png" alt="Kubernetes Logo" style="height: 1.5em; vertical-align: middle;"> Kubernetes</h2>
+        <p>Deploy and manage containerized applications at scale with Kubernetes clusters.</p>
+        <a href="kubernetes/kubernetes.html" class="button" target="_blank">Read Kubernetes Docs →</a>
+      </section>
 
     <section id="terraform">
       <h2><img src="terraform/images/favicon-terraform.png" alt="Docker Logo" style="height: 1.5em; vertical-align: middle;"> Terraform</h2>
@@ -199,6 +69,7 @@
       <p>Deploy and manage Java-based web applications using Apache Tomcat.</p>
       <a href="tomcat/tomcat.html" class="button" target="_blank">Read Tomcat Docs →</a>
     </section>
+
 
     <section id="nginx">
         <h2><img src="nginx/images/favicon-nginx.png" alt="Nginx Icon" style="height: 1.5em; vertical-align: middle;"> Nginx</h2>
@@ -234,12 +105,6 @@
       <h2><img src="linux/images/favicon-linux.png" alt="Linux Logo" style="height: 2em; vertical-align: middle;"> Linux</h2>
       <p>Master common Linux commands, shell scripting, permissions, services, and cron.</p>
       <a href="linux/linux.html" class="button" target="_blank">Read Linux Docs →</a>
-    </section>
-
-    <section id="ansible">
-      <h2><img src="ansible/images/favicon-ansible.png" alt="Ansible Logo" style="height: 2em; vertical-align: middle;"> Ansible</h2>
-      <p>Automate configuration management, app deployment, and orchestration using Ansible playbooks and roles.</p>
-      <a href="ansible/ansible.html" class="button" target="_blank">Read Ansible Docs →</a>
     </section>
 
     <section id="python">
@@ -284,6 +149,7 @@
     © 2025 Learn DevOps with Manoj | Built with 💙 on GitHub Pages<br>
     <small>📌 Version: <strong class="version-highlight">v2.0.0</strong></small>
   </footer>
+  </div>
 
 </body>
 </html>

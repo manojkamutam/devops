@@ -1,65 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Learn DevOps with Manoj</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .container {
-      max-width: 600px;
-      padding: 2rem;
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      animation: fadeIn 1.5s ease-in;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.2rem;
-      color: #dcdcdc;
-    }
-    .loader {
-      margin-top: 2rem;
-      width: 48px;
-      height: 48px;
-      border: 4px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python for DevOps Learning Path</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #007bff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            margin-top: 15px;
+            color: #28a745;
+        }
+
+        .example-code {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+        }
+
+        .learning-path {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .learning-path > li {
+            margin-bottom: 30px;
+        }
+
+        .learning-path > li > h2 {
+            color: #dc3545;
+        }
+
+        .topic-list {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .topic-list > li {
+            margin-bottom: 10px;
+        }
+
+        .sub-topic-list {
+            list-style-type: circle;
+            margin-left: 40px;
+            font-size: 0.95em;
+            color: #6c757d;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🚀 Learn DevOps with Manoj</h1>
-    <p>This site is under construction. Great things are on the way!</p>
-    <div class="loader"></div>
-    <p style="margin-top: 1.5rem;">Please check back soon.</p>
-  </div>
+    <h1>Python Scripting for DevOps Learning Path</h1>
+
+    <ul class="learning-path">
+        <li>
+            <h2>I. Python Fundamentals</h2>
+            <ul class="topic-list">
+                <li>
+                    <h3>1. Introduction to Python</h3>
+                    <p>Overview, setup, basic syntax. Example:</p>
+                    <div class="example-code">
+                        <pre><code># This is a Python comment
+print("Hello, DevOps!")
+name = "World"
+print(f"Hello, {name}!")</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>2. Control Flow</h3>
+                    <p>Conditional statements and loops. Example:</p>
+                    <div class="example-code">
+                        <pre><code>age = 25
+if age >= 18:
+    print("Adult")
+else:
+    print("Minor")
+
+for i in range(5):
+    print(i)</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>3. Data Structures</h3>
+                    <p>Lists, tuples, dictionaries, sets. Example:</p>
+                    <div class="example-code">
+                        <pre><code>my_list = [1, 2, 3]
+my_tuple = (4, 5, 6)
+my_dict = {"name": "Alice", "age": 30}
+my_set = {7, 8, 9}
+print(my_list[0])
+print(my_dict["name"])</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>4. Functions</h3>
+                    <p>Defining and calling functions. Example:</p>
+                    <div class="example-code">
+                        <pre><code>def greet(person):
+    return f"Hello, {person}!"
+
+message = greet("Bob")
+print(message)</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>5. Modules and Packages</h3>
+                    <p>Importing and using modules. Example:</p>
+                    <div class="example-code">
+                        <pre><code>import os
+print(os.getcwd())
+
+from datetime import datetime
+now = datetime.now()
+print(now)</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>6. Error Handling</h3>
+                    <p>try, except blocks. Example:</p>
+                    <div class="example-code">
+                        <pre><code>try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+finally:
+    print("Execution complete.")</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>7. File Handling</h3>
+                    <p>Reading and writing files. Example:</p>
+                    <div class="example-code">
+                        <pre><code>with open("my_file.txt", "w") as f:
+    f.write("Hello from Python!")
+
+with open("my_file.txt", "r") as f:
+    content = f.read()
+    print(content)</code></pre>
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>II. Python for DevOps Tasks</h2>
+            <ul class="topic-list">
+                <li>
+                    <h3>8. Working with the Operating System</h3>
+                    <p>Using the <code>os</code> and <code>subprocess</code> modules. Example:</p>
+                    <div class="example-code">
+                        <pre><code>import os
+print(os.listdir('.'))
+
+import subprocess
+output = subprocess.run(['ls', '-l'], capture_output=True, text=True)
+print(output.stdout)</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>9. Networking</h3>
+                    <p>Basic networking with the <code>socket</code> module and <code>requests</code>. Example:</p>
+                    <div class="example-code">
+                        <pre><code>import requests
+response = requests.get("https://httpbin.org/get")
+print(response.status_code)
+# print(response.json())</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>10. Working with APIs</h3>
+                    <p>Interacting with RESTful APIs using <code>requests</code> and JSON. Example:</p>
+                    <div class="example-code">
+                        <pre><code>import requests
+import json
+
+response = requests.get("https://httpbin.org/todos/1")
+if response.status_code == 200:
+    data = response.json()
+    print(data["title"])</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>11. Configuration Management</h3>
+                    <p>Reading configuration files (INI, YAML). Example:</p>
+                    <div class="example-code">
+                        <pre><code>import configparser
+config = configparser.ConfigParser()
+config.read('config.ini')
+print(config['DEFAULT']['ServerAliveInterval'])
+
+# Example using PyYAML (if installed: pip install PyYAML)
+# import yaml
+# with open('config.yaml', 'r') as f:
+#     yaml_config = yaml.safe_load(f)
+#     print(yaml_config['database']['host'])
+</code></pre>
+                        <p><small>Note: You'd need to create <code>config.ini</code> and potentially install <code>PyYAML</code>.</small></p>
+                    </div>
+                </li>
+                <li>
+                    <h3>12. Automation Scripting</h3>
+                    <p>Automating repetitive tasks. Example (simple log analysis):</p>
+                    <div class="example-code">
+                        <pre><code>with open("server.log", "r") as f:
+    for line in f:
+        if "ERROR" in line:
+            print(f"Error found: {line.strip()}")</code></pre>
+                        <p><small>Note: This assumes you have a <code>server.log</code> file.</small></p>
+                    </div>
+                </li>
+                <li>
+                    <h3>13. Working with Databases</h3>
+                    <p>Connecting to and querying databases. Example (requires a database connector like <code>sqlite3</code>):</p>
+                    <div class="example-code">
+                        <pre><code>import sqlite3
+
+conn = sqlite3.connect('mydatabase.db')
+cursor = conn.cursor()
+
+# cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)")
+# cursor.execute("INSERT INTO users (name) VALUES (?)", ("John",))
+cursor.execute("SELECT * FROM users")
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+conn.close()</code></pre>
+                        <p><small>Note: This requires the <code>sqlite3</code> module (usually included) and a SQLite database file.</small></p>
+                    </div>
+                </li>
+                <li>
+                    <h3>14. Cloud Interactions</h3>
+                    <ul class="sub-topic-list">
+                        <li>AWS (Boto3) - Example placeholder</li>
+                        <li>Azure (Azure SDK) - Example placeholder</li>
+                        <li>GCP (Google Cloud Client Libraries) - Example placeholder</li>
+                    </ul>
+                    <div class="example-code">
+                        <pre><code># Example for AWS (Boto3 - install with: pip install boto3)
+# import boto3
+# s3 = boto3.client('s3')
+# response = s3.list_buckets()
+# print(response)
+print("# Placeholder for cloud interaction example (e.g., AWS Boto3)")</code></pre>
+                        <p><small>Note: This requires the <code>boto3</code> library and AWS credentials configured.</small></p>
+                    </div>
+                </li>
+                <li>
+                    <h3>15. Containerization (Docker)</h3>
+                    <p>Interacting with Docker using the <code>docker</code> library. Example placeholder:</p>
+                    <div class="example-code">
+                        <pre><code># Example using the docker library (install with: pip install docker)
+# import docker
+# client = docker.from_env()
+# containers = client.containers.list()
+# for container in containers:
+#     print(container.name)
+print("# Placeholder for Docker interaction example")</code></pre>
+                        <p><small>Note: This requires the <code>docker</code> Python library and Docker to be running.</small></p>
+                    </div>
+                </li>
+                <li>
+                    <h3>16. Orchestration (Kubernetes)</h3>
+                    <p>Using the Kubernetes client library. Example placeholder:</p>
+                    <div class="example-code">
+                        <pre><code># Example using the kubernetes client (install with: pip install kubernetes)
+# from kubernetes import client, config
+# config.load_kube_config()
+# v1 = client.CoreV1Api()
+# namespaces = v1.list_namespace()
+# print(namespaces)
+print("# Placeholder for Kubernetes interaction example")</code></pre>
+                        <p><small>Note: This requires the <code>kubernetes</code> Python library and a configured Kubernetes cluster.</small></p>
+                    </div>
+                </li>
+                <li>
+                    <h3>17. Infrastructure as Code (IaC)</h3>
+                    <p>Integration with tools like Terraform and Ansible. Example (conceptual):</p>
+                    <div class="example-code">
+                        <pre><code># Example: Dynamically generating Ansible inventory
+# hosts = ["server1.example.com", "server2.example.com"]
+# with open("inventory.ini", "w") as f:
+#     f.write("[webservers]\n")
+#     for host in hosts:
+#         f.write(f"{host}\n")
+print("# Placeholder for IaC integration example")</code></pre>
+                        <p><small>Note: This shows a conceptual example of generating configuration for IaC tools.</small></p>
+                    </div>
+                </li>
+                <li>
+                    <h3>18. Testing</h3>
+                    <p>Unit and integration testing with <code>unittest</code> or <code>pytest</code>. Example (unittest):</p>
+                    <div class="example-code">
+                        <pre><code>import unittest
+
+def add(x, y):
+    return x + y
+
+class TestAddFunction(unittest.TestCase):
+    def test_positive_numbers(self):
+        self.assertEqual(add(2, 3), 5)
+
+if __name__ == '__main__':
+    unittest.main()</code></pre>
+                        <p><small>Note: You would typically run this Python file from the command line.</small></p>
+                    </div>
+                </li>
+                <li>
+                    <h3>19. Logging and Monitoring</h3>
+                    <p>Using the <code>logging</code> module and integration with monitoring tools. Example:</p>
+                    <div class="example-code">
+                        <pre><code>import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+logging.info("This is an informational message.")
+logging.error("An error occurred!")</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>20. Security Best Practices</h3>
+                    <p>Secure coding practices in Python for DevOps.</p>
+                    <div class="example-code">
+                        <pre><code># Example (avoiding hardcoded secrets - use environment variables)
+# import os
+# api_key = os.environ.get("API_KEY")
+# if api_key:
+#     print(f"Using API Key: {api_key}")
+# else:
+#     print("API Key not found in environment variables!")
+print("# Example of security best practices (using environment variables)")</code></pre>
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>III. Advanced Topics and Best Practices</h2>
+            <ul class="topic-list">
+                <li>
+                    <h3>21. Object-Oriented Programming (OOP)</h3>
+                    <p>Classes, objects, inheritance, etc.</p>
+                    <div class="example-code">
+                        <pre><code>class Server:
+    def __init__(self, hostname):
+        self.hostname = hostname
+
+    def reboot(self):
+        print(f"Rebooting server: {self.hostname}")
+
+web_server = Server("web01.example.com")
+web_server.reboot()</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>22. Concurrency and Parallelism</h3>
+                    <p>Threads, processes, asyncio.</p>
+                    <div class="example-code">
+                        <pre><code>import threading
+import time
+
+def task(n):
+    time.sleep(n)
+    print(f"Task {n} finished")
+
+thread1 = threading.Thread(target=task, args=(2,))
+thread2 = threading.Thread(target=task, args=(1,))
+thread1.start()
+thread2.start()
+thread1.join()
+thread2.join()
+print("All tasks done.")</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>23. Code Style and Best Practices</h3>
+                    <p>PEP 8, maintainable code.</p>
+                    <div class="example-code">
+                        <pre><code># Example of following PEP 8 (readability)
+def calculate_user_score(user_points, bonus_multiplier):
+    total_score = user_points * bonus_multiplier
+    return total_score
+
+user_id = "user123"
+points = 100
+multiplier = 1.5
+final_score = calculate_user_score(points, multiplier)
+print(f"User {user_id} final score: {final_score}")</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>24. Version Control (Git)</h3>
+                    <p>Using Git for managing scripts.</p>
+                    <div class="example-code">
+                        <pre><code># Example (conceptual - Git commands are usually run in the terminal)
+# git init
+# git add my_script.py
+# git commit -m "Initial commit of my Python DevOps script"
+print("# Conceptual example of basic Git commands")</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h3>25. CI/CD Integration</h3>
+                    <p>Integrating Python scripts into CI/CD pipelines.</p>
+                    <div class="example-code">
+                        <pre><code># Example (conceptual - might be part of a CI/CD pipeline script)
+# import subprocess
+# try:
+#     subprocess.run(['python', 'test_script.py'], check=True)
+#     print("Tests passed!")
+# except subprocess.CalledProcessError as e:
+#     print(f"Tests failed: {e}")
+print("# Conceptual example of running tests in a CI/CD pipeline")</code></pre>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
 </body>
 </html>
