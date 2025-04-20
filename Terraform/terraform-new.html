@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform for DevOps Learning Path</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            background-color: #f8f9fa; /* Light gray background */
+            color: #333;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        header {
+            background-color: #007bff; /* Primary blue */
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+
+        /* Navigation (Optional for a single-page site) */
+        nav {
+            background-color: #e9ecef; /* Light gray navigation */
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #495057; /* Dark gray link color */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #d3d7db; /* Slightly darker hover */
+        }
+
+        /* Section Styles */
+        .learning-path > li {
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            border: 1px solid #dee2e6; /* Light gray border */
+        }
+
+        .learning-path > li > h2 {
+            color: #dc3545; /* Danger red for main topics */
+            border-bottom: 3px solid #f8bbd0; /* Light red border */
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .topic-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .topic-list > li {
+            margin-bottom: 25px;
+        }
+
+        .topic-list > li > h3 {
+            color: #28a745; /* Success green for sub-topics */
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .sub-topic-list {
+            list-style-type: circle;
+            margin-left: 30px;
+            font-size: 0.95em;
+            color: #6c757d; /* Secondary gray */
+            padding-left: 0;
+        }
+
+        .sub-topic-list > li {
+            margin-bottom: 8px;
+        }
+
+        /* Code Block Styling */
+        .example-code {
+            background-color: #f0f8ff; /* Light blue background for code */
+            padding: 15px;
+            border: 1px solid #add8e6; /* Light blue border */
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .example-code pre {
+            margin: 0;
+        }
+
+        /* Footer (Basic) */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Terraform for DevOps Learning Path</h1>
+            <p>A comprehensive guide with examples to master Terraform for your DevOps journey.</p>
+        </header>
+
+        <nav>
+            <a href="#fundamentals">Fundamentals</a> |
+            <a href="#devops-tasks">DevOps Tasks</a> |
+            <a href="#advanced-concepts">Advanced Concepts</a>
+        </nav>
+
+        <ul class="learning-path">
+            <li id="fundamentals">
+                <h2>I. Terraform Fundamentals</h2>
+                <ul class="topic-list">
+                    <li>
+                        <h3>1. Introduction to Terraform</h3>
+                        <p>Overview, Infrastructure as Code (IaC) principles, Terraform's role. Example:</p>
+                        <div class="example-code">
+                            <pre><code># Terraform configuration file (e.g., main.tf)
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>2. Terraform Configuration Language (HCL)</h3>
+                        <p>Syntax, blocks, arguments, expressions. Example:</p>
+                        <div class="example-code">
+                            <pre><code>resource "aws_instance" "example" {
+  ami           = "ami-xxxxxxxxxxxxxxxxx" # Replace with a valid AMI ID
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "my-terraform-instance"
+  }
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>3. Resources and Providers</h3>
+                        <p>Understanding resources, configuring providers (AWS, Azure, GCP, etc.). Example:</p>
+                        <div class="example-code">
+                            <pre><code># Example of an Azure Resource Group
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "example" {
+  name     = "my-resource-group"
+  location = "eastus"
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>4. Data Sources</h3>
+                        <p>Fetching information about existing infrastructure. Example:</p>
+                        <div class="example-code">
+                            <pre><code>data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
+resource "aws_instance" "example_from_data" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t2.micro"
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>5. Variables</h3>
+                        <p>Defining and using input variables. Example:</p>
+                        <div class="example-code">
+                            <pre><code># variables.tf
+variable "instance_type" {
+  type    = string
+  default = "t2.nano"
+  description = "The type of EC2 instance to launch"
+}
+
+# main.tf
+resource "aws_instance" "configured" {
+  ami           = "ami-xxxxxxxxxxxxxxxxx" # Replace with a valid AMI ID
+  instance_type = var.instance_type
+
+  tags = {
+    Name = "instance-with-variable"
+  }
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>6. Outputs</h3>
+                        <p>Exposing values from your infrastructure. Example:</p>
+                        <div class="example-code">
+                            <pre><code>resource "aws_instance" "output_example" {
+  ami           = "ami-xxxxxxxxxxxxxxxxx" # Replace with a valid AMI ID
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "instance-for-output"
+  }
+}
+
+output "instance_public_ip" {
+  value       = aws_instance.output_example.public_ip
+  description = "The public IP address of the EC2 instance"
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>7. State Management</h3>
+                        <p>Understanding Terraform state, local vs. remote state (S3, Azure Storage, etc.). Example (conceptual):</p>
+                        <div class="example-code">
+                            <pre><code># Example of configuring remote state in AWS S3 (in terraform block)
+terraform {
+  backend "s3" {
+    bucket = "my-terraform-state-bucket"
+    key    = "environments/dev/terraform.tfstate"
+    region = "us-east-1"
+  }
+}</code></pre>
+                            <p><small>Note: This configuration goes within the <code>terraform</code> block in your configuration files.</small></p>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li id="devops-tasks">
+                <h2>II. Terraform for DevOps Tasks</h2>
+                <ul class="topic-list">
+                    <li>
+                        <h3>8. Provisioning Core Infrastructure</h3>
+                        <p>Creating virtual machines, networking components, storage. Example:</p>
+                        <div class="example-code">
+                            <pre><code># Example of creating a VPC, subnet, and security group in AWS
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
+
+resource "aws_subnet" "public" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "us-east-1a"
+}
+
+resource "aws_security_group" "web" {
+  vpc_id = aws_vpc.main.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>9. Managing Cloud Resources</h3>
+                        <p>Deploying and managing services on AWS, Azure, GCP, etc. Example (AWS S3 Bucket):</p>
+                        <div class="example-code">
+                            <pre><code>resource "aws_s3_bucket" "my_bucket" {
+  bucket = "my-unique-s3-bucket-name" # Replace with a unique name
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.my_bucket.id
+  acl    = "private"
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>10. Infrastructure as Code (IaC) Best Practices</h3>
+                        <p>Modularity, reusability, naming conventions. Example (conceptual):</p>
+                        <div class="example-code">
+                            <pre><code># Example of a module structure:
+# modules/ec2_instance/main.tf
+# modules/ec2_instance/variables.tf
+# modules/ec2_instance/outputs.tf
+
+# main.tf (calling the module)
+module "web_server" {
+  source        = "./modules/ec2_instance"
+  instance_type = "t2.medium"
+  ami           = "ami-xxxxxxxxxxxxxxxxx" # Replace
+  instance_name = "web-server-01"
+}</code></pre>
+                            <p><small>Note: This illustrates the concept of using modules for reusability.</small></p>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>11. Provisioners and Local Exec</h3>
+                        <p>Executing scripts on resources or locally (use with caution). Example:</p>
+                        <div class="example-code">
+                            <pre><code>resource "aws_instance" "with_provisioner" {
+  ami           = "ami-xxxxxxxxxxxxxxxxx" # Replace
+  instance_type = "t2.micro"
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt update",
+      "sudo apt install -y nginx"
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("~/.ssh/your_private_key") # Replace
+      host        = self.public_ip
+    }
+  }
+}</code></pre>
+                            <p><small>Warning: Provisioners can make infrastructure less predictable. Consider alternatives.</small></p>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>12. Working with Modules (Public and Private)</h3>
+                        <p>Utilizing pre-built modules from the Terraform Registry. Example:</p>
+                        <div class="example-code">
+                            <pre><code>module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.0.0"
+
+  name = "my-custom-vpc"
+  cidr = "10.0.0.0/16"
+
+  azs             = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+
+  enable_nat_gateway = true
+}</code></pre>
+                            <p><small>Note: This uses a public module from the Terraform Registry.</small></p>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>13. Testing Terraform Configurations</h3>
+                        <p>Using tools like <code>terraform validate</code>, <code>terraform plan</code>, and testing frameworks (e.g., Terratest). Example (conceptual):</p>
+                        <div class="example-code">
+                            <pre><code># Example of a Terratest test (Go language)
+# package test
+
+# import "testing"
+# import "github.com/gruntwork-io/terratest/modules/terraform"
+# import "github.com/stretchr/testify/assert"
+
+# func TestTerraformAwsInstance(t *testing.T) {
+# 	terraformOptions := &terraform.Options{
+# 		TerraformDir: "../examples/simple",
+# 	}
+# 	defer terraform.Destroy(t, terraformOptions)
+# 	terraform.InitAndApply(t, terraformOptions)
+# 	instanceID := terraform.Output(t, terraformOptions, "instance_id")
+# 	assert.NotEmpty(t, instanceID)
+# }
+print("# Conceptual example of a Terratest test")</code></pre>
+                            <p><small>Note: Terratest is a Go library for testing Terraform configurations.</small></p>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>14. CI/CD Integration with Terraform</h3>
+                        <p>Automating Terraform workflows in CI/CD pipelines (e.g., using GitHub Actions, GitLab CI, Jenkins). Example (conceptual):</p>
+                        <div class="example-code">
+                            <pre><code># Example of a basic GitHub Actions workflow for Terraform
+# name: Terraform CI/CD
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# jobs:
+#   terraform:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: hashicorp/terraform-github-actions@v2
+#         with:
